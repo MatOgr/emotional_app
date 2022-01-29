@@ -1,0 +1,29 @@
+version: "3.3"
+services:
+  fastapi:
+    build: fastapi
+    ports:
+      - "8000:8000"
+    environment:
+      - TOKEN_PATH=/api/.credentials
+    networks:
+      - local
+    hostname: fastapi
+    # volumes:
+      # - /tmp/credentials.txt:/api/.credentials:rw # Only for testing
+  monitor:
+    build: monitor
+    ports:
+      - "8001:8000"
+    devices:
+      - /dev/video0:/dev/video0
+      - /dev/snd:/dev/snd
+    privileged: true
+    networks:
+      - local
+    hostname: monitor
+    volumes:
+      - /tmp/voice:/api/voice:rw
+networks:
+  local:
+    driver: bridge

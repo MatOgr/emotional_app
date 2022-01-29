@@ -1,0 +1,90 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Monthly report {% endblock %} 
+
+<!-- Plugins CSS goes HERE  -->
+{% block plugin_stylesheets %}
+{% endblock plugin_stylesheets %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <link href="/static/assets/css/calendar.css" rel="stylesheet">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.15.4/css/all.css">
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+                <h3 class="text-themecolor m-b-0 m-t-0">Monthly report</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="/report">Reports</a></li>
+                    <li class="breadcrumb-item active"><a href="/monthly_report">Monthly report</a></li>
+                </ol>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- column -->
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="header-panel">
+                            <a class="link" href="/monthly_report/{{ data.last }}"><</a>
+                            <span class="card-title">{{data.month.zfill(2)}} - {{data.year}}</span> 
+                            <a class="link" href="/monthly_report/{{ data.next }}">></a>      
+                        </div>                 
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mon</th>
+                                        <th>Tue</th>
+                                        <th>Wed</th>
+                                        <th>Thu</th>
+                                        <th>Fri</th>
+                                        <th>Sat</th>
+                                        <th>Sun</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for week in data.emotions %}
+                                    <tr>                                        
+                                        {% for day in week %}
+                                          <td class="target"> 
+                                            <a href="/daily_report/{{data.year}}/{{data.month}}/{{day.day}}">
+                                                <i class="{{ day.emotion }} day">                                                                                            
+                                                </i>                                             
+                                                {{ day.day }}
+                                                {% if day.text != "" %}
+                                                <span class="tooltiptext"> {{ day.text }}</span>
+                                                {% endif %}
+                                            </a>
+                                          </td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+    </div>
+
+{% endblock content %}
+
+{% block javascripts %}{% endblock javascripts %}

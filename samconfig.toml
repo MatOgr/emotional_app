@@ -1,0 +1,11 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "emotional-app-again"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-15tdv1eihictv"
+s3_prefix = "emotional-app-again"
+region = "eu-central-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = []

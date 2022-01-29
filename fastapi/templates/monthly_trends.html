@@ -1,0 +1,111 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Monthly correlation report {% endblock %} 
+
+<!-- Plugins CSS goes HERE  -->
+{% block plugin_stylesheets %}
+{% endblock plugin_stylesheets %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <link href="/static/assets/css/trends.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+                <h3 class="text-themecolor m-b-0 m-t-0">Monthly correlation report</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="/report">Reports</a></li>
+                    <li class="breadcrumb-item active"><a href="/trends_report">Monthly trends</a></li>
+                    <li class="breadcrumb-item active"><a href="/monthly_trends/{{ data.year }}/{{ data.month }}/{{ data.type }}">
+                        {% if data.type == "daypart"  %}
+                        Part of the day correlations
+                        {% elif data.type == "dayofweek" %}
+                        Day of week correlations
+                        {% elif data.type == "location" %}
+                        Location correlations
+                        {% elif data.type == "weather" %}
+                        Weather correlations
+                        {% elif data.type == "series" %}
+                        Series of days in the same mood
+                        {% endif %} 
+                    </a></li>
+                </ol>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- column -->
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="header-panel">
+                            <a class="link" href="/monthly_trends/{{ data.last }}/{{ data.type }}"><</a>
+                            <span class="card-title">{{data.month.zfill(2)}} - {{data.year}}</span> 
+                            <a class="link" href="/monthly_trends/{{ data.next }}/{{ data.type }}">></a>      
+                        </div>
+                        {% if data.type == "weather"  %}
+                        <select class="form-control form-control-line" onchange="location = this.value">
+                            <option value="/monthly_trends/{{ data.year }}/{{ data.month }}/{{ data.type }}-temperature">Temperature</option>
+                            <option value="/monthly_trends/{{ data.year }}/{{ data.month }}/{{ data.type }}-description">Weather description</option>
+                            <option value="/monthly_trends/{{ data.year }}/{{ data.month }}/{{ data.type }}-humidity">Humidity</option>
+                            <option value="/monthly_trends/{{ data.year }}/{{ data.month }}/{{ data.type }}-pressure">Atmospheric pressure</option>
+                        </select>                            
+                        {% endif %}            
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Emotion</th>
+                                        {% if data.type == "daypart"  %}
+                                        <th>Part of the day</th> 
+                                        <th>Percentage of readings</th> 
+                                        {% elif data.type == "dayofweek" %}
+                                        <th>Day of week</th> 
+                                        <th>Percentage of readings</th> 
+                                        {% elif data.type == "location" %}
+                                        <th>Location</th> 
+                                        <th>Percentage of readings</th> 
+                                        {% elif data.type == "weather" %}
+                                        <th>Weather</th> 
+                                        <th>Percentage of readings</th> 
+                                        {% elif data.type == "series" %}
+                                        <th>Period</th> 
+                                        <th>Length of period</th> 
+                                        {% endif %}                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for trend in data.trends %}
+                                    <tr>        
+                                        <td>{{ trend[0] }}</td>
+                                        <td>{{ trend[1] }}</td>
+                                        <td>{{ trend[2] }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+    </div>
+
+{% endblock content %}
+
+{% block javascripts %}{% endblock javascripts %}

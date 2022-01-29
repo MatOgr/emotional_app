@@ -1,0 +1,41 @@
+.day {
+    font-size: 3em;
+}
+
+.hour {
+  text-align: right;
+  padding-left: 90%;
+}
+
+.header-panel {
+  margin: auto;
+  width: 20%;
+  font-size: 2em;
+}
+
+.table-responsive {
+  margin: auto;
+}
+.target {
+    position: relative;
+    border: 1px solid;
+  }
+  
+  .target .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    font-size: 1em;
+  }
+  
+  .target:hover .tooltiptext {
+    visibility: visible;
+  }

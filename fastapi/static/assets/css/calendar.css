@@ -1,0 +1,41 @@
+.table td {
+    height: 8em;
+    width: 8em;
+    border: 1px solid;
+}
+.day {
+    font-size: 3em;
+    color:#515d62;
+}
+
+.header-panel {
+    margin: auto;
+    width: 50%;
+    font-size: 2em;
+}
+.header-panel a {
+    border: 1px solid;
+}
+
+.target {
+    position: relative;    
+  }
+  
+  .target .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    font-size: 1em;
+  }
+  
+  .target:hover .tooltiptext {
+    visibility: visible;
+  }

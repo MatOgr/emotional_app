@@ -1,0 +1,11 @@
+pygame
+requests
+boto3
+python-multipart
+fastapi
+uvicorn
+pytz
+pyaudio
+librosa
+numpy
+matplotlib

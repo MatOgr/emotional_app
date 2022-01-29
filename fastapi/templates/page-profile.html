@@ -1,0 +1,110 @@
+
+{% extends "layouts/base.html" %}
+
+{% block title %} Settings {% endblock %} 
+
+<!-- Plugins CSS goes HERE  -->
+{% block plugin_stylesheets %}{% endblock plugin_stylesheets %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+                <h3 class="text-themecolor m-b-0 m-t-0">Settings</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    <li class="breadcrumb-item active">Settings</li>
+                </ol>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-5">
+                <div class="card">
+                    <div class="card-block">
+                        <center class="m-t-30"> <img src="/static/assets/images/users/1.jpg" class="img-circle"
+                                width="150" />
+                            <h4 class="card-title m-t-10">
+                                {{ current_user.name }} {{ current_user.family_name }}
+                            </h4>
+                            <h6 class="card-subtitle">
+                                {{ settings.email }}
+                            </h6>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-7">
+                <div class="card">
+                    <div class="card-block">
+                        <form action="/save_settings" method="POST" class="form-horizontal form-material">
+                            <div class="form-group">
+                                <label for="send_pictures" class="col-md-12">Record face pictures</label>
+                                <div class="col-md-12">
+                                    <select class="form-control form-control-line"
+                                            name="send_pictures"
+                                            id="send_pictures">
+                                        <option {% if settings.send_pictures %} selected {% endif %} value="1">Yes</option>
+                                        <option {% if not settings.send_pictures %} selected {% endif %} value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="send_voice" class="col-md-12">Record voice</label>
+                                <div class="col-md-12">
+                                    <select class="form-control form-control-line"
+                                            name="send_voice"
+                                            id="send_voice">
+                                            <option {% if settings.send_voice %} selected {% endif %} value="1">Yes</option>
+                                            <option {% if not settings.send_voice %} selected {% endif %} value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="location" class="col-md-12">Location (City, Country Code (e.g. "Poznan, PL")</label>
+                                <div class="col-md-12">
+                                    <input type="location"
+                                        class="form-control form-control-line" name="location"
+                                        id="location"
+                                        value="{{ settings.location }}"
+                                        required pattern="[A-Za-z]+, [A-Z][A-Z]">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+        <!-- Row -->
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+    </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+
+{% endblock javascripts %}

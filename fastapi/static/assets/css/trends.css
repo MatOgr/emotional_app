@@ -1,0 +1,16 @@
+.table td {
+    color: black
+}
+.day {
+    font-size: 3em;
+    color:#515d62;
+}
+
+.header-panel {
+    margin: auto;
+    width: 50%;
+    font-size: 2em;
+}
+.header-panel a {
+    border: 1px solid;
+}
